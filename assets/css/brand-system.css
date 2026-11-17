@@ -9,3 +9,17 @@
 .di-unified-mobile{display:none}.di-unified-mobile>summary{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid var(--di-line,#35435c);border-radius:11px;background:#ffffff09;color:var(--di-text,#f4f7ff);font-size:13px;font-weight:750;cursor:pointer;list-style:none}.di-unified-mobile>summary::-webkit-details-marker{display:none}.di-unified-bars{display:grid;gap:4px;width:17px}.di-unified-bars i{display:block;height:2px;border-radius:2px;background:#9fc1ff}
 @media(max-width:900px){.di-site-header{gap:12px}.di-unified-nav{gap:8px;font-size:12px}}@media(max-width:700px){.di-site-header{width:calc(100% - 28px);min-height:68px;gap:10px}.di-unified-nav{display:none}.di-unified-mobile{display:block;position:relative;margin-inline-start:auto}.di-unified-mobile-panel{position:absolute;z-index:230;top:calc(100% + 9px);inset-inline-end:0;display:grid;gap:4px;width:min(88vw,360px);max-height:75vh;overflow:auto;padding:10px;border:1px solid var(--di-line,#35435c);border-radius:16px;background:#101a2d;box-shadow:0 22px 55px #000b}.di-unified-mobile-panel>a,.di-unified-mobile-group>a{display:block;padding:10px 12px;border-radius:9px;color:#eaf1ff;text-decoration:none}.di-unified-mobile-group{display:grid;gap:2px;padding:7px 4px;border-block:1px solid #ffffff16}.di-unified-mobile-group>b{padding:5px 8px;color:#68e2d2;font-size:11px}}
 [dir=rtl] .di-site-header{direction:rtl}
+/* Permanent near-black theme: no light appearance or OS preference switching */
+:root{color-scheme:dark!important;--bg:#050608;--panel:#0b0e12;--panel2:#10141a;--line:#202630;--text:#edf1f7;--muted:#a5afbd;--di-bg:#050608;--di-panel:#0b0e12;--di-line:#202630;--di-text:#edf1f7;--di-muted:#a5afbd}
+html,body{background:#050608!important;background-image:none!important;color:#edf1f7!important;color-scheme:dark!important}
+body{background-color:#050608!important}
+main,.wrap,.container{background-color:transparent!important}
+.app,.app-card,.category-tile,.domain-card,.hero-card,.panel,.shot-card,.blog-card,.about-card,.intro-band,.di-visitor-tools,article,.mini,.feature,.related a,.discover-tools,.di-search-results a,.di-unified-panel,.di-unified-mobile-panel{background:#0b0e12!important;background-image:none!important;color:#edf1f7!important;border-color:#202630!important}
+.app-card .app-icon-img,.app-icon,.cover,.gallery figure{background-color:#080a0d!important}
+p,.lead,.sub,.note,.crumb,.app-description,.category-tile p,.domain-card p,.about-card p,.footer,.footer-inner{color:#a5afbd!important}
+input,select,textarea,.di-visitor-tools input,.di-visitor-tools select{background:#080a0d!important;color:#edf1f7!important;border-color:#252c36!important;color-scheme:dark!important}
+button,.filter,.btn.secondary,.lang{color:#e8edf5!important;border-color:#252c36!important}
+.filter.active,.filter:hover{background:#171d26!important;color:#fff!important;border-color:#45566d!important}
+.cta-panel,.app-card .play,.btn.primary,.di-unified-cta{background:linear-gradient(110deg,#668ac4,#398e85)!important;color:#05090d!important}
+.di-unified-panel,.di-unified-mobile-panel{background:#090b0f!important;box-shadow:0 18px 48px #000c!important}
+::selection{background:#245b59;color:#fff}
