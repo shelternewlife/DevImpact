@@ -10,6 +10,32 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://shelternewlife.github.io/DevImpact"
 ERRORS, WARNINGS, EXTERNAL = [], [], set()
 
+class LanguageAudit(HTMLParser):
+    """Detect visible Arabic script on English pages, ignoring Arabic-language controls."""
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta",
+            "param", "source", "track", "wbr"}
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack = []
+        self.bad = []
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        lang = (a.get("lang") or "").lower()
+        inherited = self.stack[-1][1] if self.stack else False
+        skip = inherited or tag in ("script", "style", "noscript") or lang.startswith("ar")
+        if tag not in self.VOID:
+            self.stack.append((tag, skip))
+    def handle_startendtag(self, tag, attrs):
+        pass
+    def handle_endtag(self, tag):
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                del self.stack[i:]
+                break
+    def handle_data(self, data):
+        if not (self.stack[-1][1] if self.stack else False) and any("\u0600" <= ch <= "\u06ff" for ch in data):
+            self.bad.append(data.strip())
+
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -76,6 +102,10 @@ def check_pages():
         try: h.feed(p.read_text(encoding="utf-8"))
         except Exception as e: fail(rel+" HTML parse error: "+str(e)); continue
         expected=url_for(p)
+        if not rel.startswith("ar/"):
+            audit = LanguageAudit()
+            audit.feed(p.read_text(encoding="utf-8"))
+            if audit.bad: fail(rel+" contains visible Arabic text in an English page: "+repr(audit.bad[:3]))
         if len(h.canonicals)!=1: fail(rel+" must contain exactly one canonical")
         elif h.canonicals[0].rstrip("/")!=expected.rstrip("/"): fail(rel+" canonical mismatch")
         if not "".join(h.title_text).strip(): fail(rel+" missing title")
