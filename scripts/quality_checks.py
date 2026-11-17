@@ -86,7 +86,7 @@ def check_catalog():
     for a in apps:
         for k in ("id","name","package","description","page","arabicPage","category","kind"):
             if not a.get(k): fail(a.get("id","?")+" missing "+k)
-        for k in ("page","arabicPage"):
+        for k in ("page","arabicPage","frenchPage"):
             p=ROOT/a[k].lstrip("/")
             if p.is_dir(): p=p/"index.html"
             if not p.is_file(): fail(a["id"]+" missing "+a[k])
@@ -97,7 +97,7 @@ def check_pages():
     ps=get_pages(); known={url_for(p):p for p in ps}
     for p in ps:
         rel=p.relative_to(ROOT).as_posix()
-        if rel=="404.html": continue
+        if rel in ("404.html","fr/404.html"): continue
         h=Page()
         try: h.feed(p.read_text(encoding="utf-8"))
         except Exception as e: fail(rel+" HTML parse error: "+str(e)); continue
@@ -115,7 +115,7 @@ def check_pages():
         if not h.meta.get("og:image"): WARNINGS.append(rel+" missing og:image")
         if not h.meta.get("twitter:card"): WARNINGS.append(rel+" missing twitter:card")
         langs={x[0] for x in h.alternates}
-        if not {"en","ar","x-default"}.issubset(langs): WARNINGS.append(rel+" missing complete en/ar/x-default hreflang")
+        if not {"en","ar","fr","x-default"}.issubset(langs): WARNINGS.append(rel+" missing complete en/ar/fr/x-default hreflang")
         for lang,u in h.alternates:
             if u not in known: fail(rel+" hreflang "+lang+" target missing: "+u)
         for tag,attr,u in h.links:
@@ -134,14 +134,14 @@ def check_sitemap(ps):
     urls=[n.text.strip() for n in root.findall("s:url/s:loc",ns) if n.text]
     if not urls: fail("Sitemap has no URLs")
     if len(urls)!=len(set(urls)): WARNINGS.append("Sitemap contains duplicate URLs; de-duplicate during sitemap rebuild")
-    known={url_for(p) for p in ps if p.relative_to(ROOT).as_posix()!="404.html"}
+    known={url_for(p) for p in ps if p.relative_to(ROOT).as_posix() not in ("404.html","fr/404.html")}
     for u in urls:
         if u not in known: fail("Sitemap URL has no HTML page: "+u)
     for node in root.findall("s:url",ns):
         loc=node.findtext("s:loc",default="",namespaces=ns)
         alts=node.findall("x:link",ns)
         langs={a.attrib.get("hreflang") for a in alts}
-        if not {"en","ar","x-default"}.issubset(langs): WARNINGS.append("Sitemap hreflang incomplete: "+loc)
+        if not {"en","ar","fr","x-default"}.issubset(langs): WARNINGS.append("Sitemap hreflang incomplete: "+loc)
         for a in alts:
             if a.attrib.get("href") not in known: fail("Sitemap alternate target missing: "+str(a.attrib.get("href")))
     if not set(urls).issubset(known): fail("Sitemap contains URLs without HTML pages")
