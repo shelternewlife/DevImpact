@@ -5,18 +5,11 @@ const p=location.pathname;
 let lang='en';
 for(const l of langs.slice(1)) if(p.startsWith(ROOT+l+'/')) lang=l;
 const route=p.replace(/^\/DevImpact\//,'').replace(/^(?:en|fr|ar|de|it|es|pt)\//,'').replace(/index\.html$/,'');
-const localized=['fr','ar','de'].includes(lang);
+const localized=lang!=='en';
 const page=(path)=>ROOT+(lang==='en'||!localized?'':lang+'/')+path;
 const home=ROOT+(lang==='en'?'':lang+'/');
-const T={
-en:{home:'Home',apps:'Apps',allApps:'All apps',browse:'Browse by category',games:'Games',social:'Social',career:'Career',sports:'Sports',categories:'Categories',allCategories:'All categories',discover:'Discover',directory:'Games Directory',compare:'App Comparison',blog:'Guides & Blog',about:'About DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Main navigation'},
-fr:{home:'Accueil',apps:'Applications',allApps:'Toutes les applications',browse:'Parcourir par catégorie',games:'Jeux',social:'Social',career:'Carrière',sports:'Sports',categories:'Rubriques',allCategories:'Toutes les rubriques',discover:'Découvrir',directory:'Catalogue des jeux',compare:'Comparateur d’applications',blog:'Guides et blog',about:'À propos de DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Navigation principale'},
-ar:{home:'الرئيسية',apps:'التطبيقات',allApps:'كل التطبيقات',browse:'تصفح حسب الفئة',games:'الألعاب',social:'التواصل',career:'المهنة',sports:'الرياضة',categories:'الفئات',allCategories:'كل الفئات',discover:'اكتشف',directory:'دليل الألعاب',compare:'مقارنة التطبيقات',blog:'الأدلة والمدونة',about:'عن DevImpact',play:'Google Play ↗',menu:'القائمة',aria:'التنقل الرئيسي'},
-de:{home:'Startseite',apps:'Apps',allApps:'Alle Apps',browse:'Nach Kategorie stöbern',games:'Spiele',social:'Soziales',career:'Karriere',sports:'Sport',categories:'Kategorien',allCategories:'Alle Kategorien',discover:'Entdecken',directory:'Spieleverzeichnis',compare:'App-Vergleich',blog:'Ratgeber & Blog',about:'Über DevImpact',play:'Google Play ↗',menu:'Menü',aria:'Hauptnavigation'},
-it:{home:'Home',apps:'App',allApps:'Tutte le app',browse:'Sfoglia per categoria',games:'Giochi',social:'Social',career:'Carriera',sports:'Sport',categories:'Categorie',allCategories:'Tutte le categorie',discover:'Scopri',directory:'Catalogo giochi',compare:'Confronto app',blog:'Guide e blog',about:'Chi siamo',play:'Google Play ↗',menu:'Menu',aria:'Navigazione principale'},
-es:{home:'Inicio',apps:'Aplicaciones',allApps:'Todas las aplicaciones',browse:'Explorar por categoría',games:'Juegos',social:'Social',career:'Carrera',sports:'Deportes',categories:'Categorías',allCategories:'Todas las categorías',discover:'Descubrir',directory:'Directorio de juegos',compare:'Comparador de aplicaciones',blog:'Guías y blog',about:'Sobre DevImpact',play:'Google Play ↗',menu:'Menú',aria:'Navegación principal'},
-pt:{home:'Início',apps:'Aplicativos',allApps:'Todos os aplicativos',browse:'Explorar por categoria',games:'Jogos',social:'Social',career:'Carreira',sports:'Esportes',categories:'Categorias',allCategories:'Todas as categorias',discover:'Descobrir',directory:'Diretório de jogos',compare:'Comparador de aplicativos',blog:'Guias e blog',about:'Sobre a DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Navegação principal'}
-}[lang];
+const T={home:'Home',apps:'Apps',allApps:'All apps',browse:'Browse by category',games:'Games',social:'Social',career:'Career',sports:'Sports',categories:'Categories',allCategories:'All categories',discover:'Discover',directory:'Games Directory',compare:'App Comparison',blog:'Guides & Blog',about:'About DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Main navigation'};
+
 const link=(text,path)=>'<a href="'+path+'">'+text+'</a>';
 const group=(label,items)=>'<details class="di-unified-menu"><summary>'+label+'<span aria-hidden="true">⌄</span></summary><div class="di-unified-panel">'+items+'</div></details>';
 const categories='<b class="di-unified-label">'+T.browse+'</b>'+link(T.games,page('categories/games/'))+link(T.social,page('categories/social/'))+link(T.career,page('categories/career/'))+link(T.sports,page('categories/sports/'));
@@ -26,7 +19,7 @@ const mobile=document.createElement('details');mobile.className='di-unified-mobi
 mobile.innerHTML='<summary><span class="di-unified-bars" aria-hidden="true"><i></i><i></i><i></i></span>'+T.menu+'</summary><nav class="di-unified-mobile-panel" aria-label="'+T.aria+'">'+link(T.home,home)+link(T.allApps,page('apps/'))+link(T.allCategories,page('categories/'))+'<div class="di-unified-mobile-group"><b>'+T.apps+' · '+T.browse+'</b>'+link(T.games,page('categories/games/'))+link(T.social,page('categories/social/'))+link(T.career,page('categories/career/'))+link(T.sports,page('categories/sports/'))+'</div>'+link(T.directory,page('games/'))+link(T.compare,page('compare/'))+link(T.blog,page('blog/'))+link(T.about,page('about/'))+'<a href="'+PLAY+'" target="_blank" rel="noopener">'+T.play+'</a></nav>';
 const header=document.querySelector('header.di-site-header');
 if(header){
- header.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+ header.setAttribute('dir','ltr');
  const brand=header.querySelector('.di-site-brand');
  if(brand) brand.href=home;
  header.querySelectorAll('.di-unified-nav,.di-unified-mobile').forEach(n=>n.remove());
@@ -38,7 +31,7 @@ if(!document.getElementById('di-nav-unified-style')){
  document.head.appendChild(style);
 }
 const current=lang;
-const routeFor=l=>{if(l==='en')return ROOT+route;if(['fr','ar','de'].includes(l))return ROOT+l+'/'+route;return ROOT+l+'/'};
+const routeFor=l=>{if(l==='en')return ROOT+route;if(l!=='en')return ROOT+l+'/'+route;return ROOT};
 const labels={en:'English',fr:'Français',ar:'العربية',de:'Deutsch',it:'Italiano',es:'Español',pt:'Português'};
 const short={en:'EN',fr:'FR',ar:'AR',de:'DE',it:'IT',es:'ES',pt:'PT'};
 const picker=document.createElement('details');
@@ -46,6 +39,14 @@ picker.className='di-lang-switch';
 picker.setAttribute('dir',lang==='ar'?'rtl':'ltr');
 picker.innerHTML='<summary aria-label="Choose language"><span class="di-lang-current">'+short[current]+' · '+labels[current]+'</span><span class="di-lang-chevron" aria-hidden="true">⌄</span></summary><div class="di-lang-panel" role="group" aria-label="Available languages">'+langs.map(l=>'<a href="'+routeFor(l)+'" lang="'+l+'"'+(l==='ar'?' dir="rtl"':'')+(l===current?' aria-current="page"':'')+'><span>'+labels[l]+'</span><small>'+short[l]+'</small></a>').join('')+'</div>';
 if(header) header.appendChild(picker);
+document.querySelectorAll('a[href]').forEach(a=>{
+ try{
+  const u=new URL(a.getAttribute('href'),location.href);
+  if(u.origin!==location.origin||!u.pathname.startsWith(ROOT)||u.pathname.startsWith(ROOT+'assets/'))return;
+  let tail=u.pathname.slice(ROOT.length).replace(/^(?:en|fr|ar|de|it|es|pt)\//,'');
+  a.href=ROOT+(lang==='en'?'':lang+'/')+tail+u.search+u.hash;
+ }catch(_){}
+});
 if(!document.getElementById('di-lang-inline-style')){
  const css=document.createElement('style');css.id='di-lang-inline-style';
  css.textContent='.di-site-header{position:relative!important;flex-wrap:nowrap!important;min-width:0!important}.di-unified-nav{flex:0 1 auto!important}.di-lang-switch{position:relative!important;z-index:240!important;display:block!important;flex:0 0 auto!important;margin:0!important;font:12px/1.2 system-ui!important}.di-lang-switch>summary{display:flex!important;align-items:center!important;gap:8px!important;max-width:155px!important;padding:9px 11px!important;border:1px solid var(--di-line,#35435c)!important;border-radius:11px!important;background:#101a2d!important;color:var(--di-text,#f4f7ff)!important;font-weight:750!important;cursor:pointer!important;list-style:none!important;white-space:nowrap!important}.di-lang-switch>summary::-webkit-details-marker{display:none!important}.di-lang-chevron{color:#68e2d2!important;font-size:15px!important}.di-lang-panel{position:absolute!important;z-index:500!important;top:calc(100% + 8px)!important;inset-inline-end:0!important;display:none!important;width:190px!important;max-height:min(65vh,390px)!important;overflow:auto!important;padding:7px!important;border:1px solid var(--di-line,#35435c)!important;border-radius:13px!important;background:#101a2d!important;box-shadow:0 18px 45px #000b!important}.di-lang-switch[open] .di-lang-panel{display:grid!important;gap:3px!important}.di-lang-panel a{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:9px 10px!important;border-radius:8px!important;color:#edf3ff!important;text-decoration:none!important}.di-lang-panel a:hover,.di-lang-panel a:focus-visible{background:#ffffff12!important;outline:2px solid #68e2d2!important;outline-offset:-2px!important}.di-lang-panel a[aria-current=page]{background:#193d3a!important;color:#9ff4e5!important;font-weight:800!important}.di-lang-panel small{color:#9eacc2!important;font-size:10px!important}.di-unified-mobile{flex:0 0 auto!important}@media(max-width:1100px){.di-site-header{gap:10px!important}.di-lang-switch>summary{padding:9px 10px!important}}@media(max-width:700px){.di-site-header{flex-wrap:wrap!important;row-gap:10px!important}.di-site-brand{flex:1 1 auto!important;min-width:0!important}.di-unified-mobile{margin-inline-start:0!important}.di-lang-switch{margin-inline-start:0!important}.di-lang-switch>summary{max-width:130px!important;padding:9px 10px!important}.di-lang-panel{width:175px!important}}@media(max-width:390px){.di-site-header{gap:8px!important}.di-lang-switch>summary{max-width:112px!important;font-size:11px!important}.di-unified-mobile>summary{padding:9px 10px!important}}';
