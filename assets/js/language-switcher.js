@@ -8,7 +8,16 @@ const route=p.replace(/^\/DevImpact\//,'').replace(/^(?:en|fr|ar|de|it|es|pt)\//
 const localized=lang!=='en';
 const page=(path)=>ROOT+(lang==='en'||!localized?'':lang+'/')+path;
 const home=ROOT+(lang==='en'?'':lang+'/');
-const T=lang==='ar'?{home:'الرئيسية',apps:'التطبيقات',allApps:'جميع التطبيقات',browse:'تصفّح حسب الفئة',games:'الألعاب',social:'التواصل الاجتماعي',career:'المسار المهني',sports:'الرياضة',categories:'التصنيفات',allCategories:'جميع التصنيفات',discover:'اكتشف',directory:'دليل الألعاب',compare:'مقارنة التطبيقات',blog:'الأدلة والمقالات',about:'حول DevImpact',play:'Google Play ↗',menu:'القائمة',aria:'التنقل الرئيسي'}:{home:'Home',apps:'Apps',allApps:'All apps',browse:'Browse by category',games:'Games',social:'Social',career:'Career',sports:'Sports',categories:'Categories',allCategories:'All categories',discover:'Discover',directory:'Games Directory',compare:'App Comparison',blog:'Guides & Blog',about:'About DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Main navigation'};
+const translations={
+en:{home:'Home',apps:'Apps',allApps:'All apps',browse:'Browse by category',games:'Games',social:'Social',career:'Career',sports:'Sports',categories:'Categories',allCategories:'All categories',discover:'Discover',directory:'Games Directory',compare:'App Comparison',blog:'Guides & Blog',about:'About DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Main navigation'},
+ar:{home:'الرئيسية',apps:'التطبيقات',allApps:'جميع التطبيقات',browse:'تصفّح حسب الفئة',games:'الألعاب',social:'التواصل الاجتماعي',career:'المسار المهني',sports:'الرياضة',categories:'التصنيفات',allCategories:'جميع التصنيفات',discover:'اكتشف',directory:'دليل الألعاب',compare:'مقارنة التطبيقات',blog:'الأدلة والمقالات',about:'حول ديف إمباكت',play:'جوجل بلاي ↗',menu:'القائمة',aria:'التنقل الرئيسي'},
+fr:{home:'Accueil',apps:'Applications',allApps:'Toutes les applications',browse:'Parcourir par catégorie',games:'Jeux',social:'Social',career:'Carrière',sports:'Sports',categories:'Catégories',allCategories:'Toutes les catégories',discover:'Découvrir',directory:'Répertoire des jeux',compare:'Comparaison d\'applications',blog:'Guides et blog',about:'À propos de DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Navigation principale'},
+de:{home:'Startseite',apps:'Apps',allApps:'Alle Apps',browse:'Nach Kategorie durchsuchen',games:'Spiele',social:'Sozial',career:'Karriere',sports:'Sport',categories:'Kategorien',allCategories:'Alle Kategorien',discover:'Entdecken',directory:'Spieleverzeichnis',compare:'App-Vergleich',blog:'Anleitungen & Blog',about:'Über DevImpact',play:'Google Play ↗',menu:'Menü',aria:'Hauptnavigation'},
+it:{home:'Home',apps:'App',allApps:'Tutte le app',browse:'Sfoglia per categoria',games:'Giochi',social:'Social',career:'Carriera',sports:'Sport',categories:'Categorie',allCategories:'Tutte le categorie',discover:'Scopri',directory:'Directory giochi',compare:'Confronto app',blog:'Guide e blog',about:'Informazioni su DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Navigazione principale'},
+es:{home:'Inicio',apps:'Apps',allApps:'Todas las apps',browse:'Explorar por categoría',games:'Juegos',social:'Social',career:'Carrera',sports:'Deportes',categories:'Categorías',allCategories:'Todas las categorías',discover:'Descubrir',directory:'Directorio de juegos',compare:'Comparación de apps',blog:'Guías y blog',about:'Acerca de DevImpact',play:'Google Play ↗',menu:'Menú',aria:'Navegación principal'},
+pt:{home:'Início',apps:'Apps',allApps:'Todas as apps',browse:'Explorar por categoria',games:'Jogos',social:'Social',career:'Carreira',sports:'Desporto',categories:'Categorias',allCategories:'Todas as categorias',discover:'Descobrir',directory:'Diretório de jogos',compare:'Comparação de apps',blog:'Guias e blog',about:'Sobre o DevImpact',play:'Google Play ↗',menu:'Menu',aria:'Navegação principal'}
+};
+const T=translations[lang]||translations.en;
 
 const link=(text,path)=>'<a href="'+path+'">'+text+'</a>';
 const group=(label,items)=>'<details class="di-unified-menu"><summary>'+label+'<span aria-hidden="true">⌄</span></summary><div class="di-unified-panel">'+items+'</div></details>';
@@ -30,18 +39,28 @@ if(!document.getElementById('di-nav-unified-style')){
  style.textContent='.di-site-header{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-width:0}.di-site-brand{flex:none!important}.di-unified-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:nowrap!important;gap:clamp(7px,.9vw,14px)!important;margin-inline-start:auto!important;min-width:0!important;font-size:clamp(11px,.9vw,13px)!important}.di-unified-nav>a,.di-unified-menu>summary{white-space:nowrap!important}.di-unified-mobile{display:none!important;position:relative!important;margin-inline-start:auto!important}.di-unified-mobile>summary{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid var(--di-line,#35435c);border-radius:11px;background:#ffffff09;color:var(--di-text,#f4f7ff);font-size:13px;font-weight:750;cursor:pointer;list-style:none}.di-unified-mobile>summary::-webkit-details-marker{display:none}.di-unified-bars{display:grid;gap:4px;width:17px}.di-unified-bars i{display:block;height:2px;border-radius:2px;background:#9fc1ff}.di-unified-mobile-panel{position:absolute;z-index:230;top:calc(100% + 9px);inset-inline-end:0;display:grid;gap:4px;width:min(88vw,360px);max-height:75vh;overflow:auto;padding:10px;border:1px solid var(--di-line,#35435c);border-radius:16px;background:#101a2d;box-shadow:0 22px 55px #000b}.di-unified-mobile-panel>a{display:block;padding:10px 12px;border-radius:9px;color:#eaf1ff;text-decoration:none}.di-unified-mobile-group{display:grid;gap:2px;padding:7px 4px;border-block:1px solid #ffffff16}.di-unified-mobile-group>b{padding:5px 8px;color:#68e2d2;font-size:11px}.di-unified-mobile-group>a{display:block;padding:10px 12px;border-radius:9px;color:#eaf1ff;text-decoration:none}@media(max-width:1100px){.di-unified-nav{display:none!important}.di-unified-mobile{display:block!important}}@media(max-width:700px){.di-site-header{width:calc(100% - 28px)!important;min-height:68px!important;gap:10px!important}.di-unified-mobile-panel{width:min(88vw,360px)}}';
  document.head.appendChild(style);
 }
+const footerLabelsMap = {
+  en: {about:'About DevImpact',contact:'Contact',privacy:'Privacy Policy',terms:'Terms of Use',play:'Google Play',github:'GitHub',rights:'All rights reserved.'},
+  ar: {about:'حول ديف إمباكت',contact:'اتصل بنا',privacy:'سياسة الخصوصية',terms:'شروط الاستخدام',play:'جوجل بلاي',github:'جيت هاب',rights:'جميع الحقوق محفوظة.'},
+  fr: {about:'À propos de DevImpact',contact:'Contact',privacy:'Politique de confidentialité',terms:'Conditions d\'utilisation',play:'Google Play',github:'GitHub',rights:'Tous droits réservés.'},
+  de: {about:'Über DevImpact',contact:'Kontakt',privacy:'Datenschutzrichtlinie',terms:'Nutzungsbedingungen',play:'Google Play',github:'GitHub',rights:'Alle Rechte vorbehalten.'},
+  it: {about:'Informazioni su DevImpact',contact:'Contatto',privacy:'Informativa sulla privacy',terms:'Termini di utilizzo',play:'Google Play',github:'GitHub',rights:'Tutti i diritti riservati.'},
+  es: {about:'Acerca de DevImpact',contact:'Contacto',privacy:'Política de privacidad',terms:'Términos de uso',play:'Google Play',github:'GitHub',rights:'Todos los derechos reservados.'},
+  pt: {about:'Sobre o DevImpact',contact:'Contacto',privacy:'Política de privacidade',terms:'Termos de utilização',play:'Google Play',github:'GitHub',rights:'Todos os direitos reservados.'}
+};
+const footerLabels = footerLabelsMap[lang] || footerLabelsMap.en;
 const footerLinks=[
- ['About DevImpact',page('about/')],
- ['Contact',page('contact/')],
- ['Privacy Policy',page('privacy/')],
- ['Terms of Use',page('terms/')],
- ['Google Play',PLAY,'_blank'],
- ['GitHub','https://github.com/shelternewlife/DevImpact','_blank']
+ [footerLabels.about,page('about/')],
+ [footerLabels.contact,page('contact/')],
+ [footerLabels.privacy,page('privacy/')],
+ [footerLabels.terms,page('terms/')],
+ [footerLabels.play,PLAY,'_blank'],
+ [footerLabels.github,'https://github.com/shelternewlife/DevImpact','_blank']
 ];
 let footer=document.querySelector('footer');
 if(!footer){footer=document.createElement('footer');document.body.appendChild(footer);}
 footer.className='footer';
-footer.innerHTML='<div class="wrap footer-inner"><span>© <span id="year">'+new Date().getFullYear()+'</span> DevImpact. <span>All rights reserved.</span></span><span>'+footerLinks.map(([label,href,target])=>'<a href="'+href+'"'+(target?' target="'+target+'" rel="noopener"':'')+'>'+label+'</a>').join(' · ')+'</span></div>';
+footer.innerHTML='<div class="wrap footer-inner"><span>© <span id="year">'+new Date().getFullYear()+'</span> '+(lang==='ar'?'ديف إمباكت':'DevImpact')+'. <span>'+footerLabels.rights+'</span></span><span>'+footerLinks.map(([label,href,target])=>'<a href="'+href+'"'+(target?' target="'+target+'" rel="noopener"':'')+'>'+label+'</a>').join(' · ')+'</span></div>';
 const current=lang;
 const routeFor=l=>{if(l==='en')return ROOT+route;if(l!=='en')return ROOT+l+'/'+route;return ROOT};
 const labels={en:'English',fr:'Français',ar:'العربية',de:'Deutsch',it:'Italiano',es:'Español',pt:'Português'};
