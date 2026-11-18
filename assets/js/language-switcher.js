@@ -40,6 +40,7 @@ picker.setAttribute('dir',lang==='ar'?'rtl':'ltr');
 picker.innerHTML='<summary aria-label="Choose language"><span class="di-lang-current">'+short[current]+' · '+labels[current]+'</span><span class="di-lang-chevron" aria-hidden="true">⌄</span></summary><div class="di-lang-panel" role="group" aria-label="Available languages">'+langs.map(l=>'<a href="'+routeFor(l)+'" lang="'+l+'"'+(l==='ar'?' dir="rtl"':'')+(l===current?' aria-current="page"':'')+'><span>'+labels[l]+'</span><small>'+short[l]+'</small></a>').join('')+'</div>';
 if(header) header.appendChild(picker);
 document.querySelectorAll('a[href]').forEach(a=>{
+ if(a.closest('.di-lang-panel'))return;
  try{
   const u=new URL(a.getAttribute('href'),location.href);
   if(u.origin!==location.origin||!u.pathname.startsWith(ROOT)||u.pathname.startsWith(ROOT+'assets/'))return;
