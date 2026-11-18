@@ -30,6 +30,18 @@ if(!document.getElementById('di-nav-unified-style')){
  style.textContent='.di-site-header{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-width:0}.di-site-brand{flex:none!important}.di-unified-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:nowrap!important;gap:clamp(7px,.9vw,14px)!important;margin-inline-start:auto!important;min-width:0!important;font-size:clamp(11px,.9vw,13px)!important}.di-unified-nav>a,.di-unified-menu>summary{white-space:nowrap!important}.di-unified-mobile{display:none!important;position:relative!important;margin-inline-start:auto!important}.di-unified-mobile>summary{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid var(--di-line,#35435c);border-radius:11px;background:#ffffff09;color:var(--di-text,#f4f7ff);font-size:13px;font-weight:750;cursor:pointer;list-style:none}.di-unified-mobile>summary::-webkit-details-marker{display:none}.di-unified-bars{display:grid;gap:4px;width:17px}.di-unified-bars i{display:block;height:2px;border-radius:2px;background:#9fc1ff}.di-unified-mobile-panel{position:absolute;z-index:230;top:calc(100% + 9px);inset-inline-end:0;display:grid;gap:4px;width:min(88vw,360px);max-height:75vh;overflow:auto;padding:10px;border:1px solid var(--di-line,#35435c);border-radius:16px;background:#101a2d;box-shadow:0 22px 55px #000b}.di-unified-mobile-panel>a{display:block;padding:10px 12px;border-radius:9px;color:#eaf1ff;text-decoration:none}.di-unified-mobile-group{display:grid;gap:2px;padding:7px 4px;border-block:1px solid #ffffff16}.di-unified-mobile-group>b{padding:5px 8px;color:#68e2d2;font-size:11px}.di-unified-mobile-group>a{display:block;padding:10px 12px;border-radius:9px;color:#eaf1ff;text-decoration:none}@media(max-width:1100px){.di-unified-nav{display:none!important}.di-unified-mobile{display:block!important}}@media(max-width:700px){.di-site-header{width:calc(100% - 28px)!important;min-height:68px!important;gap:10px!important}.di-unified-mobile-panel{width:min(88vw,360px)}}';
  document.head.appendChild(style);
 }
+const footerLinks=[
+ ['About DevImpact',page('about/')],
+ ['Contact',page('contact/')],
+ ['Privacy Policy',page('privacy/')],
+ ['Terms of Use',page('terms/')],
+ ['Google Play',PLAY,'_blank'],
+ ['GitHub','https://github.com/shelternewlife/DevImpact','_blank']
+];
+let footer=document.querySelector('footer');
+if(!footer){footer=document.createElement('footer');document.body.appendChild(footer);}
+footer.className='footer';
+footer.innerHTML='<div class="wrap footer-inner"><span>© <span id="year">'+new Date().getFullYear()+'</span> DevImpact. <span>All rights reserved.</span></span><span>'+footerLinks.map(([label,href,target])=>'<a href="'+href+'"'+(target?' target="'+target+'" rel="noopener"':'')+'>'+label+'</a>').join(' · ')+'</span></div>';
 const current=lang;
 const routeFor=l=>{if(l==='en')return ROOT+route;if(l!=='en')return ROOT+l+'/'+route;return ROOT};
 const labels={en:'English',fr:'Français',ar:'العربية',de:'Deutsch',it:'Italiano',es:'Español',pt:'Português'};
