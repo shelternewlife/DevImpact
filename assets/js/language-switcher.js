@@ -294,3 +294,55 @@ if(lang==='ar'){
  document.querySelectorAll('script[type="application/ld+json"]').forEach(s=>{s.textContent=s.textContent.replace(/"inLanguage"\s*:\s*"en"/g,'"inLanguage":"ar"');});
 }
 
+
+/* Localized app-detail content fallback: translate remaining source-language copy
+   on every localized route, including metadata, while preserving app names and markup. */
+(()=>{'use strict';
+ const root='/DevImpact/',supported=['ar','de','es','fr','it','pt'];
+ const path=location.pathname.replace(root,'');
+ const locale=path.split('/')[0];
+ if(!supported.includes(locale)||!path.includes('/apps/'))return;
+ const cacheKey='di-page-translation-v2:'+locale+':'+location.pathname;
+ let cache={};try{cache=JSON.parse(sessionStorage.getItem(cacheKey)||'{}')}catch(_){}
+ const protectedNames=/^(DevImpact|Google Play|Android|ZyCrush|Nextube|Tetrixa|GoalPredict|Bubble Fury|Fruit Fury Slice|Fruit Fury Slice|Palace Match|Job Connect|Job Search|Célibataire|SuperSwipe|ELO|xG)$/i;
+ const candidates=[];
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ while(walker.nextNode()){
+  const n=walker.currentNode, t=n.nodeValue.trim();
+  if(!t||t.length<3||!/[A-Za-z]{2}/.test(t)||protectedNames.test(t))continue;
+  if(n.parentElement?.closest('script,style,noscript,code,pre,nav,.di-site-header,.di-lang-switch'))continue;
+  candidates.push({node:n,raw:n.nodeValue,trim:t});
+ }
+ const attrs=[];
+ document.querySelectorAll('[alt],[title],[aria-label],[placeholder]').forEach(el=>{
+  for(const a of ['alt','title','aria-label','placeholder']){
+   const v=el.getAttribute(a);if(v&&/[A-Za-z]{3}/.test(v)&&!protectedNames.test(v))attrs.push({el,a,v});
+  }
+ });
+ const targets=[...candidates.map(x=>({get:()=>x.trim,set:v=>x.node.nodeValue=x.raw.replace(x.trim,v)})),...attrs.map(x=>({get:()=>x.v,set:v=>x.el.setAttribute(x.a,v)}))];
+ const metas=[...document.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"]')];
+ for(const el of metas){const v=el.tagName==='TITLE'?el.textContent:el.content;if(v&&/[A-Za-z]{3}/.test(v)&&!protectedNames.test(v))targets.push({get:()=>v,set:x=>{if(el.tagName==='TITLE')el.textContent=x;else el.content=x;}});}
+ const translate=async value=>{
+  if(cache[value])return cache[value];
+  const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+encodeURIComponent(locale)+'&dt=t&q='+encodeURIComponent(value);
+  const response=await fetch(url,{headers:{Accept:'application/json'}});
+  if(!response.ok)throw new Error('translation service '+response.status);
+  const data=await response.json();
+  const result=(data[0]||[]).map(part=>part[0]||'').join('');
+  if(!result)throw new Error('empty translation');
+  cache[value]=result;return result;
+ };
+ const run=async()=>{
+  let failed=0;
+  for(let i=0;i<targets.length;i+=5){
+   const group=targets.slice(i,i+5);
+   const values=await Promise.all(group.map(async item=>{try{return await translate(item.get())}catch(_){failed++;return null}}));
+   values.forEach((v,j)=>{if(v)group[j].set(v)});
+   try{sessionStorage.setItem(cacheKey,JSON.stringify(cache))}catch(_){}
+  }
+  document.documentElement.dataset.diContentLanguage=locale;
+  document.documentElement.dataset.diTranslationStatus=failed?'partial':'complete';
+  document.dispatchEvent(new CustomEvent('di:localized-content',{detail:{locale,translated:targets.length-failed,failed}}));
+ };
+ run().catch(()=>{document.documentElement.dataset.diTranslationStatus='unavailable'});
+})();
