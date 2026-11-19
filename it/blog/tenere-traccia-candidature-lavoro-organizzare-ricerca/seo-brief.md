@@ -1,0 +1,24 @@
+# SEO research brief — Italian article
+
+- Research date: 2026-11-19
+- Target market: Italy
+- Audience: job seekers managing multiple vacancies and submitted applications.
+- Primary query / focus keyword: tenere traccia delle candidature
+- Search intent: informational
+- Content type: practical guide
+- Keyword group: job-connect
+- Reader problem: prevent duplicate applications, missed deadlines and confusion between saved listings and completed applications.
+- Cannibalization review: current Italian articles cover transferable skills and interview preparation; neither targets application tracking. The multilingual inventory contains related job-alert material in Arabic, French, German and Spanish, but no equivalent Italian application-tracking guide. English covers job-alert setup and evaluating postings, not a tracker workflow. Portuguese has no job-search article.
+- SERP evidence: Italian search results reviewed for application tracking and job application organization; official guidance from the Ministry of Labour, EURES, Europass/INAPP, and the official Job Connect listing. No search-volume or ranking claims are made.
+- App evidence: Google Play listing for Job Connect, package com.jobsearch.jobconnect.work.jobs.devimpact; describes job search, saving listings and job alerts. Article distinguishes saved listings/alerts from submitted applications and does not claim an application-management dashboard.
+- Sources:
+  - https://www.lavoro.gov.it/sportello-unico-digitale/ricerca-di-occupazione/modalita-di-candidatura-un-posto-di-lavoro
+  - https://siisl.lavoro.gov.it/
+  - https://skillon.inapp.gov.it/it/EUP-applications
+  - https://eures.europa.eu/use-europass-digital-tools-and-services-better-manage-your-career-2026-03-19_it
+  - https://europass.europa.eu/it/create-europass-cv
+  - https://play.google.com/store/apps/details?id=com.jobsearch.jobconnect.work.jobs.devimpact
+  - https://it.indeed.com/help/job-seekers/articles/4412589551757-i-miei-lavori-gestione-delle-candidature-inviate?co=IT&hl=it
+  - https://www.manpower.it/it/insights/blogs/2026/10/23/candidature-online-
+- Internal links: Italian Job Connect page, Career category, existing Italian guides on transferable skills and interview preparation.
+- No invented search volume, app features, metrics, testimonials or guarantees.
