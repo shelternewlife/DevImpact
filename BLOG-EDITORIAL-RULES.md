@@ -30,3 +30,14 @@ For every language version of an article:
 ## Adding future rules
 
 Append each newly approved mandatory rule to this document with a numbered heading. Update the automated quality checks when the rule can be objectively tested. Treat this file as the single source of truth for blog editorial requirements; do not rely on remembering instructions from an earlier chat.
+
+
+## Rule 2 — Permanent multilingual keyword registry
+
+The canonical registry is `data/seo-keywords.json`. It contains exactly ten strategic candidate phrases for the general DevImpact site and ten for every app in `data/apps.json`, separately for each supported locale (`en`, `ar`, `fr`, `de`, `es`, `it`, `pt`). Every phrase is limited to two words.
+
+Every new article must declare `devimpact:keyword-group`: use `site` for general DevImpact topics or the exact app ID for an article about one app. Its `devimpact:focus-keyword` must exactly match one of the ten phrases registered for that group and locale. The locale follows the article path. Do not translate a keyword from another language or invent an unregistered focus phrase.
+
+When a new app is added to the central catalogue, add a keyword group containing ten phrases for every supported language before publishing any article about it. Keep exactly ten active phrases per group and locale; review and replace candidates deliberately rather than silently expanding the active set.
+
+**Research integrity:** these entries are strategic candidate phrases chosen for relevance to the actual app functionality and likely discovery intent. They are not verified search-volume or competition measurements. Before claiming high volume or ranking potential, validate each phrase with Google Ads Keyword Planner, Google Play search suggestions and Search Console for the target country. Never invent volumes, difficulty scores or rankings. Relevance and natural writing take priority over repetition or keyword stuffing.

@@ -24,3 +24,8 @@ Use WebP or AVIF for photographic and screenshot assets, include intrinsic `widt
 ## Mandatory blog editorial policy
 
 `BLOG-EDITORIAL-RULES.md` is the permanent, authoritative policy for all current and future blog articles. Rule 1 requires independent SEO research and a distinct primary focus keyword for every language and target market; literal translation of another locale's keyword strategy is prohibited. Each article must declare `devimpact:seo-language` and `devimpact:focus-keyword` metadata. `scripts/quality_checks.py` enforces the declared locale and rejects identical focus keywords across language versions of the same article. The localized blog index pages are landing pages and must never be treated as article pages or deleted when managing articles.
+
+
+## Permanent multilingual keyword register
+
+`data/seo-keywords.json` is the source of truth: ten strategic candidate phrases for the general site and ten per app, per supported language. Each phrase is at most two words. Every article must declare `devimpact:keyword-group` (`site` or an app ID) and a `devimpact:focus-keyword` from that exact locale/group list. Add ten phrases per language when adding an app. Current entries are candidates, not measured search-volume data.

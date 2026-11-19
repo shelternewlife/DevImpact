@@ -163,6 +163,46 @@ def check_blog_seo():
             seen[keyword] = lang
     print("Blog SEO: enforced locale-specific language and focus keyword on " + str(len(articles)) + " articles")
 
+
+def check_registered_keywords():
+    """Enforce the permanent locale/group keyword registry on blog articles."""
+    try:
+        registry = json.loads((ROOT / "data/seo-keywords.json").read_text(encoding="utf-8"))
+    except Exception as e:
+        fail("Cannot read data/seo-keywords.json: " + str(e))
+        return
+    groups = registry.get("groups", {})
+    languages = registry.get("languages", [])
+    for group, locales in groups.items():
+        for lang in languages:
+            values = locales.get(lang, [])
+            if len(values) != 10:
+                fail("Keyword registry " + group + "/" + lang + " must contain exactly 10 phrases")
+            for value in values:
+                if len(value.strip().split()) > 2:
+                    fail("Keyword exceeds two words: " + group + "/" + lang + ": " + value)
+    try:
+        app_ids = {a["id"] for a in json.loads((ROOT / "data/apps.json").read_text(encoding="utf-8"))["apps"]}
+        for app_id in app_ids:
+            if app_id not in groups:
+                fail("Missing keyword group for catalogued app: " + app_id)
+    except Exception as e:
+        fail("Cannot validate app keyword groups: " + str(e))
+    for p in get_pages():
+        if p.parent.name == "blog" or "blog" not in p.parts or p.name != "index.html":
+            continue
+        parts = p.relative_to(ROOT).as_posix().split("/")
+        blog_i = parts.index("blog")
+        lang = parts[0] if blog_i == 1 else "en"
+        h = Page()
+        h.feed(p.read_text(encoding="utf-8"))
+        group = h.meta.get("devimpact:keyword-group", "").strip()
+        focus = " ".join(h.meta.get("devimpact:focus-keyword", "").casefold().split())
+        if group not in groups:
+            fail(p.relative_to(ROOT).as_posix() + " has unknown or missing devimpact:keyword-group")
+        elif lang not in groups[group] or focus not in {" ".join(x.casefold().split()) for x in groups[group][lang]}:
+            fail(p.relative_to(ROOT).as_posix() + " focus keyword is not registered for " + lang + "/" + group)
+
 def check_sitemap(ps):
     try: root=ET.parse(ROOT/"sitemap.xml").getroot()
     except Exception as e: fail("Invalid sitemap.xml: "+str(e)); return
@@ -205,7 +245,7 @@ def external_check(url):
     return url,0,"request failed"
 
 def main():
-    check_catalog(); ps=check_pages(); check_sitemap(ps)
+    check_catalog(); ps=check_pages(); check_blog_seo(); check_registered_keywords(); check_sitemap(ps)
     if "--external" in sys.argv:
         with ThreadPoolExecutor(max_workers=8) as ex:
             for f in as_completed([ex.submit(external_check,u) for u in sorted(EXTERNAL)]):
