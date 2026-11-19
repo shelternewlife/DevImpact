@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "language": "it",
+  "market": "IT",
+  "date": "2026-11-19",
+  "slug": "portfolio-professionale-candidatura-lavoro",
+  "topic": "Come creare un portfolio professionale per candidarsi al lavoro",
+  "primaryKeyword": "portfolio professionale",
+  "intent": "informational",
+  "audience": "Persone in Italia che preparano candidature, junior, professionisti in transizione e candidati in settori creativi, tecnici e operativi",
+  "inventory": "Verificati gli articoli pubblicati in en, ar, fr, de, es, it e pt nel tree di main. Nessuna pagina equivalente sul portfolio professionale individuata nelle sette sezioni. In italiano esistono già contenuti su competenze trasferibili, colloquio, tracciamento candidature, annunci fraudolenti e avvisi di lavoro: il nuovo articolo copre una diversa esigenza, cioè la raccolta e presentazione di prove professionali.",
+  "keywordResearch": "Ricerca qualitativa in lingua italiana su portfolio professionale e portfolio per candidatura. Risultati esaminati: Indeed Italia (4 maggio 2026), Randstad Italia, CliccaLavoro, Iuav. Nessun volume o punteggio di difficoltà dichiarato.",
+  "sources": [
+    "https://play.google.com/store/apps/details?id=com.jobsearch.jobconnect.work.jobs.devimpact",
+    "https://it.indeed.com/guida-alla-carriera/cv-lettere-presentazione/come-creare-un-portfolio-digitale-o-cartaceo",
+    "https://europass.europa.eu/en/what-type-information-should-i-include-my-europass-profile",
+    "https://europass.europa.eu/en/europass-digital-tools",
+    "https://eures.europa.eu/jobseekers/create-your-europass_en",
+    "https://www.iuav.it/it/il-curriculum-vitae-professionale-e-la-lettera-di-presentazione-motivazione/cosa-inserire-nel-curriculum-vitae",
+    "https://www.randstad.it/come-trovare-lavoro/come-fare-un-portfolio/"
+  ],
+  "note": "Job Connect is described only with features verified on its Google Play listing and existing Italian app page: searching job opportunities, saving jobs and setting job alerts. No claim that it creates or hosts portfolios."
+}
