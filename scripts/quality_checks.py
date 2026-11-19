@@ -131,6 +131,38 @@ def check_pages():
     print("HTML: checked "+str(len(ps))+" pages, canonical, metadata, hreflang and local references")
     return ps
 
+def check_blog_seo():
+    """Enforce independent, locale-specific SEO targeting for every blog article."""
+    articles = sorted(p for p in get_pages()
+                      if p.parent.name != "blog" and "blog" in p.parts
+                      and p.name == "index.html")
+    by_slug = {}
+    for p in articles:
+        rel = p.relative_to(ROOT).as_posix()
+        parts = rel.split("/")
+        blog_i = parts.index("blog")
+        lang = parts[0] if blog_i == 1 else "en"
+        slug = parts[blog_i + 1] if blog_i + 1 < len(parts) else ""
+        h = Page()
+        h.feed(p.read_text(encoding="utf-8"))
+        declared_lang = h.meta.get("devimpact:seo-language", "").strip().lower()
+        focus = h.meta.get("devimpact:focus-keyword", "").strip()
+        if declared_lang != lang:
+            fail(rel + " must declare meta name=devimpact:seo-language content=" + lang)
+        if not focus:
+            fail(rel + " missing its locally researched devimpact:focus-keyword")
+        if not "".join(h.title_text).strip() or not h.meta.get("description", "").strip():
+            fail(rel + " requires a localized SEO title and meta description")
+        if focus:
+            by_slug.setdefault(slug, []).append((lang, " ".join(focus.casefold().split()), rel))
+    for slug, entries in by_slug.items():
+        seen = {}
+        for lang, keyword, rel in entries:
+            if keyword in seen and seen[keyword] != lang:
+                fail("Blog article " + slug + " reuses the same focus keyword across " + seen[keyword] + " and " + lang + "; research a distinct local query")
+            seen[keyword] = lang
+    print("Blog SEO: enforced locale-specific language and focus keyword on " + str(len(articles)) + " articles")
+
 def check_sitemap(ps):
     try: root=ET.parse(ROOT/"sitemap.xml").getroot()
     except Exception as e: fail("Invalid sitemap.xml: "+str(e)); return
