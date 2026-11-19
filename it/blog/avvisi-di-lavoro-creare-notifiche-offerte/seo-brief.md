@@ -1,0 +1,25 @@
+# Brief SEO editoriale — Avvisi di lavoro: come crearli per ricevere offerte pertinenti
+
+- Data della ricerca: 19 novembre 2026
+- Lingua/mercato: italiano / Italia (IT)
+- Intento: informativo
+- Tipo: guida pratica
+- Gruppo keyword: `job-connect`
+- Keyword principale: `avvisi di lavoro`
+- Keyword secondarie: `alert offerte di lavoro`, `notifiche offerte di lavoro`, `parole chiave ricerca lavoro`, `Job Alert`, `offerte pertinenti`
+- Slug: `/it/blog/avvisi-di-lavoro-creare-notifiche-offerte/`
+- Pubblico: persone in Italia che cercano lavoro e vogliono configurare notifiche pertinenti senza sovraccaricare la propria routine.
+- Problema risolto: avvisi troppo generici, irrilevanti o difficili da trasformare in candidature verificate.
+- Differenziazione dalla pagina italiana esistente: la guida su `tenere traccia delle candidature` riguarda il monitoraggio delle candidature già avviate; questo articolo tratta la progettazione e la revisione degli avvisi prima della candidatura.
+- Inventory: guide equivalenti pubblicate in inglese, arabo, francese, tedesco e spagnolo; non individuata una versione italiana prima di questa pubblicazione né una versione portoghese nell'indice pubblico corrente.
+- Registro keyword: gruppo `job-connect` presente; la lista del registro è dichiarata dal progetto come insieme di candidati non verificati, non vincolante.
+- Ricerca SERP: query italiana esplorata tramite ricerche web; risultati pertinenti includono la guida ufficiale Indeed "Iniziare la ricerca di lavoro" che spiega la creazione e la frequenza dei Job Alert. Nessun volume o livello di concorrenza dichiarato perché non è disponibile una misurazione datata verificabile.
+- Fonti primarie:
+  - Google Play, Job Connect: https://play.google.com/store/apps/details?id=com.jobsearch.jobconnect.work.jobs.devimpact
+  - Indeed Help Center: https://www.indeed.com/help/job-seekers/guides/getting-started-with-your-job-search?co=IT&hl=it
+  - EURES Help and Support: https://eures.europa.eu/eures-services/help-and-support_it
+  - Ministero del Lavoro: https://www.lavoro.gov.it/sportello-unico-digitale/ricerca-di-occupazione/modalita-di-candidatura-un-posto-di-lavoro
+  - Agenzia regionale per il lavoro Emilia-Romagna: https://www.agenzialavoro.emr.it/cittadini/strumenti-ricerca-lavoro/cercare-lavoro-su-internet
+- Collegamenti interni verificati: scheda italiana Job Connect, guida sul monitoraggio delle candidature, guida sulle competenze trasferibili, indice italiano del blog.
+- App: Job Connect — package `com.jobsearch.jobconnect.work.jobs.devimpact`; la scheda Play descrive ricerca di opportunità, salvataggio degli annunci e avvisi. Nessuna funzionalità aggiuntiva è stata attribuita senza riscontro.
+- Conteggio del corpo HTML (intestazioni, paragrafi e liste dell'articolo; esclusi metadata, navigazione e fonti): 4890 parole.
