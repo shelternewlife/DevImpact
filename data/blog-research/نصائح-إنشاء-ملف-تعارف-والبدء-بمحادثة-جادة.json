@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "article": "نصائح-إنشاء-ملف-تعارف-والبدء-بمحادثة-جادة",
+  "researchDate": "2026-11-19",
+  "method": "Manual review of Arabic-language search results for the Tunisia Arabic editorial market, competitor pages, official app listing and authoritative online-safety guidance. Search-result examples are observations only, not proof of search volume, keyword difficulty or rankings.",
+  "localization": {
+    "ar": {
+      "market": "TN-ar",
+      "queries": [
+        "إنشاء ملف تعارف تطبيقات التعارف نصائح",
+        "كتابة ملف تعارف تطبيقات التعارف",
+        "كيف تبدأ محادثة في تطبيقات التعارف"
+      ],
+      "focusKeyword": "إنشاء ملف تعارف",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Amarbis — كيف تنشئ ملف تعارف مثاليًا",
+          "url": "https://www.amarbis.com/ar/guides/profile-tips",
+          "coverage": "Covers profile photos, biography structure, interests and profile mistakes; international dating orientation."
+        },
+        {
+          "name": "Meetarabic — إنشاء ملف شخصي جذاب وصادق للتعارف",
+          "url": "https://www.meetarabic.com/ar/articles/profil-attractif-sincere-rencontre-halal",
+          "coverage": "Covers intent, photo selection, honest biography and common profile mistakes; faith-specific audience."
+        },
+        {
+          "name": "ChatHala — كيف تبدأ محادثة مع شخص لا تعرفه",
+          "url": "https://chathala.com/blog/how-to-start-a-conversation",
+          "coverage": "Covers profile reading, first-message openers, short questions and respectful follow-up."
+        },
+        {
+          "name": "HeyArab — الأسئلة الشائعة عن الملف والمحادثات",
+          "url": "https://heyarab.app/ar/faq/",
+          "coverage": "Product FAQ illustrating user questions about profile information, privacy and conversation features."
+        }
+      ],
+      "contentGap": "Search examples tend to isolate profile writing or first-message advice, or address a particular relationship/cultural niche. This guide combines an honest profile framework, examples, photo privacy, distinct relationship/friendship/professional intentions, conversation practice and the verified Célibataire feature set. It uses clear Modern Standard Arabic and does not imply one cultural or relationship model fits all."
+    }
+  },
+  "officialAppReference": {
+    "name": "Célibataire: Rencontres & Chat",
+    "package": "com.celibataire.single.devimpact",
+    "playStore": "https://play.google.com/store/apps/details?id=com.celibataire.single.devimpact",
+    "devimpactPage": "https://shelternewlife.github.io/DevImpact/ar/apps/celibataire/",
+    "verificationNote": "Official Google Play listing opened via the DevImpact developer's More by DevImpact listing. Verified description: profiles with photos, bio, prompts and interests; age, distance and intention filters; text, photo and voice-note chat; swipe/like/SuperSwipe; women send the first message; matches expire after 24 hours and may be extended or another match sent; local storage supports exploration during unstable connection. No identity-verification, precise location-hiding or reporting feature claims were added."
+  },
+  "sources": [
+    {
+      "name": "Google Play official listing",
+      "url": "https://play.google.com/store/apps/details?id=com.celibataire.single.devimpact",
+      "supports": "Verified product name and features."
+    },
+    {
+      "name": "eSafety Commissioner — Online dating",
+      "url": "https://www.esafety.gov.au/key-topics/staying-safe/online-dating",
+      "supports": "Profile privacy, photo caution, app safety checks, boundaries and meeting guidance."
+    },
+    {
+      "name": "RAINN — Tips for Safer Dating",
+      "url": "https://rainn.org/strategies-to-reduce-risk-increase-safety/tips-for-safer-dating-online-and-in-person",
+      "supports": "Photo and link caution, financial scam awareness and reporting suspicious behavior."
+    }
+  ],
+  "editorialDecision": "Create the missing Arabic version of the existing English informational guide online-dating-profile-conversation-guide. Keep the Arabic article original and localized, not a literal translation. The existing Arabic romance-scam article is a distinct topic and is linked as a complementary resource. Do not promise matches or claim unverified app safety features.",
+  "limitations": [
+    "No Google Search Console query export or Google Ads Keyword Planner data was available; no search volume, ranking or difficulty claims are made.",
+    "Arabic SERP review is directional and requires future Tunisia-specific Search Console validation."
+  ]
+}
