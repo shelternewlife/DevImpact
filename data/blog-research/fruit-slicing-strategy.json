@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "article": "fruit-slicing-strategy",
+  "researchDate": "2026-11-19",
+  "method": "Manual web-search result review using one natural-language query per locale and target market. The pages below are observed search-result examples, not proof of keyword volume, difficulty, ranking, or exact-market demand. No volume or competition claims are made.",
+  "officialAppReference": {
+    "devimpactPage": "https://shelternewlife.github.io/DevImpact/apps/fruit-fury-slice/",
+    "package": "com.game.fruitfury.devimpact",
+    "playStore": "https://play.google.com/store/apps/details?id=com.game.fruitfury.devimpact",
+    "verificationNote": "App modes and feature wording were checked against the existing DevImpact app detail page in the repository. The direct Play Store URL could not be independently opened by the web research tool during this task."
+  },
+  "localization": {
+    "en": {
+      "market": "US",
+      "query": "fruit slicing game tips fruit cutting arcade game strategy United States",
+      "focusKeyword": "fruit slicing game tips",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Wobbles Games – Fruit Slice",
+          "url": "https://wobblesgames.com/games/fruit-slice",
+          "coverage": "Explains swipe controls, multi-fruit combos and bomb avoidance for its own browser game."
+        },
+        {
+          "name": "ormgames – Fruit Slice",
+          "url": "https://ormgames.com/en/fruitcut/",
+          "coverage": "Provides a general fruit-slicing guide with controls, combos, bombs and mode-specific scoring for its own game."
+        }
+      ],
+      "contentGap": "The reviewed pages describe other games and their own scoring rules. This article avoids importing those rules and instead explains safe target selection and the four modes documented for Fruit Fury Slice."
+    },
+    "ar": {
+      "market": "TN-ar",
+      "query": "لعبة تقطيع الفواكه نصائح ألعاب أركيد تونس",
+      "focusKeyword": "لعبة تقطيع الفواكه",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Gamivu – Kerf (Arabic)",
+          "url": "https://gamivu.com/ar/game/kerf",
+          "coverage": "Arabic-language game page describing swipe-based fruit cutting and arcade play."
+        }
+      ],
+      "contentGap": "The surfaced Arabic page is a general regional-language example, not evidence of Tunisia-specific search volume. The article uses clear Modern Standard Arabic and describes Fruit Fury Slice's documented modes without copying another game's rules.",
+      "marketEvidenceCaveat": "Tunisia is the working primary market; local Tunisian Search Console or Keyword Planner data is still needed to validate country-level demand."
+    },
+    "fr": {
+      "market": "FR",
+      "query": "jeu de découpe de fruits astuces jeu arcade France",
+      "focusKeyword": "jeu de découpe de fruits",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Oyun Köşesi – Jeux de couper les fruits",
+          "url": "https://oyunkosesi.com/fr/articles/jeux-couper-fruits-astuces/",
+          "coverage": "Discusses timing, combo opportunities, bombs and common mistakes across several games."
+        },
+        {
+          "name": "Rempara – Jeu de découpe de fruits",
+          "url": "https://rempara.com/fr/guides/fruit-slicing-game-tips/",
+          "coverage": "Covers controlled swipes, combo planning and hazard awareness for its own game."
+        }
+      ],
+      "contentGap": "Existing results mix several titles and game-specific mechanics. The article focuses on transferable decision-making and the modes actually listed for Fruit Fury Slice."
+    },
+    "de": {
+      "market": "DE",
+      "query": "Früchte schneiden Spiel Tipps Arcade Deutschland",
+      "focusKeyword": "Früchte schneiden",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "GIGA – Fruit Ninja Tipps",
+          "url": "https://www.giga.de/games/werdet-zum-profi-in-fruit-ninja-diese-tricks-helfen--01KB5J290H3XP79R5440R676N0",
+          "coverage": "German-language advice on timing, combos, bomb avoidance and high-score play for Fruit Ninja."
+        },
+        {
+          "name": "Gamivu – Kerf (German)",
+          "url": "https://gamivu.com/de/spiel/kerf",
+          "coverage": "German-language game page with swipe controls, combo explanations and bomb-avoidance tips."
+        }
+      ],
+      "contentGap": "The results focus on Fruit Ninja or another named game. This guide distinguishes general play principles from unverified game-specific scoring and power-up mechanics."
+    },
+    "es": {
+      "market": "ES",
+      "query": "juego de cortar frutas consejos juego arcade España",
+      "focusKeyword": "juego de cortar fruta",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "VISU Games – Cortar Frutas",
+          "url": "https://visu.network/es/juegos/cortar-frutas/",
+          "coverage": "Spanish-language instructions for swipe controls, combos and avoiding bombs."
+        },
+        {
+          "name": "Teloo – Fruit Slice",
+          "url": "https://www.teloo.games/es/fruit-slice/",
+          "coverage": "Spanish-language overview with short tips on grouping fruit, short swipes near bombs and watching screen edges."
+        }
+      ],
+      "contentGap": "The reviewed pages explain their own browser games. The article links the general advice to Fruit Fury Slice's documented Classic, Timed, Zen and Challenge modes."
+    },
+    "it": {
+      "market": "IT",
+      "query": "gioco taglia frutta consigli arcade Italia",
+      "focusKeyword": "gioco taglia frutta",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Gamivu – Kerf (Italian)",
+          "url": "https://gamivu.com/it/gioco/kerf",
+          "coverage": "Italian-language guide to swipe-based fruit cutting, combos and bomb avoidance."
+        },
+        {
+          "name": "FRVR – Taglia la frutta",
+          "url": "https://frvr.com/it/play/fruitchopper/",
+          "coverage": "Italian-language arcade game description focused on cutting flying fruit and avoiding bombs."
+        }
+      ],
+      "contentGap": "Search examples describe other games and their mechanics. The article avoids transferring their exact scoring values or rules to Fruit Fury Slice."
+    },
+    "pt": {
+      "market": "PT",
+      "query": "jogo de cortar fruta dicas jogo arcade Portugal",
+      "focusKeyword": "jogo de cortar fruta",
+      "intent": "informational",
+      "observedSources": [
+        {
+          "name": "Gamivu – Kerf (Portuguese)",
+          "url": "https://gamivu.com/pt/jogo/kerf",
+          "coverage": "Portuguese-language game guide with controls, combos, modes and bomb-avoidance tips."
+        },
+        {
+          "name": "Coopixel – Slash Fruit",
+          "url": "https://coopixel.com/pt/games/slash-fruit/",
+          "coverage": "Portuguese-language description of swipe-based fruit slicing, bomb hazards and practical control tips."
+        }
+      ],
+      "contentGap": "The reviewed pages describe separate games. The article uses European Portuguese and connects broad play advice to the features listed for Fruit Fury Slice."
+    }
+  },
+  "editorialDecision": "Publish one original guide per locale. Keep advice transferable and cautious; do not claim exact combo thresholds, score multipliers, special-fruit effects or cognitive benefits unless verified in the target app. Link each locale to its corresponding Fruit Fury Slice detail page.",
+  "validationLimitations": [
+    "No Google Ads Keyword Planner or Google Search Console query data was available in this task.",
+    "Search-result appearance is not a measure of search volume or ranking difficulty.",
+    "The Arabic market needs additional Tunisia-specific query validation.",
+    "The official Play Store URL was present in the repository app page but could not be independently opened by the web search tool."
+  ]
+}
