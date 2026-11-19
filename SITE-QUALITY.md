@@ -29,3 +29,8 @@ Use WebP or AVIF for photographic and screenshot assets, include intrinsic `widt
 ## Permanent multilingual keyword register
 
 `data/seo-keywords.json` is the source of truth: ten strategic candidate phrases for the general site and ten per app, per supported language. Each phrase is at most two words. Every article must declare `devimpact:keyword-group` (`site` or an app ID) and a `devimpact:focus-keyword` from that exact locale/group list. Add ten phrases per language when adding an app. Current entries are candidates, not measured search-volume data.
+
+
+## Full multilingual SEO operating standard
+
+SEO-STRATEGY.md is the mandatory standard for keyword research, country-level localization, article briefs, people-first content, technical SEO, structured data, publishing and Search Console measurement. The keyword registry contains idea starters only; it is not a whitelist or verified volume source. No fixed keyword count, density or article word count is required.

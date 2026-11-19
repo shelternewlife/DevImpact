@@ -176,11 +176,11 @@ def check_registered_keywords():
     for group, locales in groups.items():
         for lang in languages:
             values = locales.get(lang, [])
-            if len(values) != 10:
-                fail("Keyword registry " + group + "/" + lang + " must contain exactly 10 phrases")
+            if not isinstance(values, list):
+                fail("Keyword registry " + group + "/" + lang + " must be a list of candidate phrases")
             for value in values:
-                if len(value.strip().split()) > 2:
-                    fail("Keyword exceeds two words: " + group + "/" + lang + ": " + value)
+                if not isinstance(value, str) or not value.strip():
+                    fail("Keyword registry contains an empty/non-text candidate: " + group + "/" + lang)
     try:
         app_ids = {a["id"] for a in json.loads((ROOT / "data/apps.json").read_text(encoding="utf-8"))["apps"]}
         for app_id in app_ids:
@@ -200,8 +200,8 @@ def check_registered_keywords():
         focus = " ".join(h.meta.get("devimpact:focus-keyword", "").casefold().split())
         if group not in groups:
             fail(p.relative_to(ROOT).as_posix() + " has unknown or missing devimpact:keyword-group")
-        elif lang not in groups[group] or focus not in {" ".join(x.casefold().split()) for x in groups[group][lang]}:
-            fail(p.relative_to(ROOT).as_posix() + " focus keyword is not registered for " + lang + "/" + group)
+        elif lang not in groups[group]:
+            fail(p.relative_to(ROOT).as_posix() + " keyword group has no candidate locale " + lang)
 
 def check_sitemap(ps):
     try: root=ET.parse(ROOT/"sitemap.xml").getroot()
@@ -244,8 +244,80 @@ def external_check(url):
             return url,0,str(e)
     return url,0,"request failed"
 
+
+def check_blog_publication_quality():
+    """Validate objective SEO requirements for every future blog article."""
+    class ArticleAudit(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.h1 = 0
+            self.images_without_alt = []
+            self.internal_links = 0
+            self.jsonld = []
+            self.in_jsonld = False
+            self.buffer = []
+        def handle_starttag(self, tag, attrs):
+            a = dict(attrs)
+            if tag == "h1": self.h1 += 1
+            if tag == "img" and "alt" not in a: self.images_without_alt.append(a.get("src", "(unknown image)"))
+            if tag == "a" and a.get("href", "").startswith(("/", BASE)): self.internal_links += 1
+            if tag == "script" and a.get("type", "").lower() == "application/ld+json":
+                self.in_jsonld = True
+                self.buffer = []
+        def handle_endtag(self, tag):
+            if tag == "script" and self.in_jsonld:
+                self.jsonld.append("".join(self.buffer))
+                self.in_jsonld = False
+        def handle_data(self, data):
+            if self.in_jsonld: self.buffer.append(data)
+
+    articles = sorted(p for p in get_pages() if "blog" in p.parts and p.parent.name != "blog" and p.name == "index.html")
+    for p in articles:
+        rel = p.relative_to(ROOT).as_posix()
+        raw = p.read_text(encoding="utf-8")
+        h = Page(); h.feed(raw)
+        audit = ArticleAudit(); audit.feed(raw)
+        parts = rel.split("/")
+        bi = parts.index("blog")
+        lang = parts[0] if bi == 1 else "en"
+        required = ["devimpact:seo-language", "devimpact:seo-market", "devimpact:search-intent", "devimpact:content-type", "devimpact:keyword-group", "devimpact:focus-keyword"]
+        for key in required:
+            if not h.meta.get(key, "").strip(): fail(rel + " missing required " + key + " metadata")
+        if h.meta.get("devimpact:seo-language", "").strip().lower() != lang:
+            fail(rel + " SEO language does not match its URL path")
+        if h.meta.get("devimpact:search-intent", "").strip().lower() not in {"informational", "commercial", "navigational", "transactional"}:
+            fail(rel + " has an invalid devimpact:search-intent")
+        if h.meta.get("devimpact:content-type", "").strip().lower() not in {"article", "guide", "comparison", "tutorial", "review"}:
+            fail(rel + " has an invalid devimpact:content-type")
+        if len(h.canonicals) != 1 or h.canonicals[0].rstrip("/") != url_for(p).rstrip("/"):
+            fail(rel + " must use a self-referencing canonical URL")
+        if audit.h1 != 1: fail(rel + " must contain exactly one H1")
+        if audit.images_without_alt: fail(rel + " images missing alt attribute: " + ", ".join(audit.images_without_alt[:5]))
+        if audit.internal_links < 2: WARNINGS.append(rel + " has fewer than two detected internal links; review contextual linking")
+        if not h.meta.get("og:title") or not h.meta.get("og:description") or not h.meta.get("og:image"):
+            fail(rel + " requires Open Graph title, description and image")
+        if not h.meta.get("twitter:card"): fail(rel + " missing Twitter card metadata")
+        if "noindex" in h.meta.get("robots", "").lower(): fail(rel + " is marked noindex")
+        if not audit.jsonld: fail(rel + " requires truthful Article/BlogPosting JSON-LD")
+        else:
+            valid = False
+            for block in audit.jsonld:
+                try:
+                    data = json.loads(block)
+                    nodes = data if isinstance(data, list) else data.get("@graph", [data]) if isinstance(data, dict) else []
+                    for node in nodes:
+                        types = node.get("@type", []) if isinstance(node, dict) else []
+                        if isinstance(types, str): types = [types]
+                        if any(t in {"Article", "BlogPosting", "NewsArticle"} for t in types):
+                            valid = True
+                            for field in ("headline", "datePublished", "dateModified", "author", "image"):
+                                if not node.get(field): fail(rel + " Article JSON-LD missing " + field)
+                except Exception as e: fail(rel + " invalid JSON-LD: " + str(e))
+            if not valid: fail(rel + " JSON-LD must include Article or BlogPosting type")
+    print("Blog publication SEO: checked " + str(len(articles)) + " article pages")
+
 def main():
-    check_catalog(); ps=check_pages(); check_blog_seo(); check_registered_keywords(); check_sitemap(ps)
+    check_catalog(); ps=check_pages(); check_blog_seo(); check_registered_keywords(); check_blog_publication_quality(); check_sitemap(ps)
     if "--external" in sys.argv:
         with ThreadPoolExecutor(max_workers=8) as ex:
             for f in as_completed([ex.submit(external_check,u) for u in sorted(EXTERNAL)]):

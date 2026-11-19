@@ -32,12 +32,10 @@ For every language version of an article:
 Append each newly approved mandatory rule to this document with a numbered heading. Update the automated quality checks when the rule can be objectively tested. Treat this file as the single source of truth for blog editorial requirements; do not rely on remembering instructions from an earlier chat.
 
 
-## Rule 2 — Permanent multilingual keyword registry
+## Rule 2 — Candidate keyword registry
 
-The canonical registry is `data/seo-keywords.json`. It contains exactly ten strategic candidate phrases for the general DevImpact site and ten for every app in `data/apps.json`, separately for each supported locale (`en`, `ar`, `fr`, `de`, `es`, `it`, `pt`). Every phrase is limited to two words.
+The file data/seo-keywords.json is an optional idea-starter registry, not a validated keyword database, publication whitelist, or source of search-volume claims. The ten phrases currently listed per group and language are unverified candidates and may be linguistically unnatural. Authors must research the actual target market and may select better queries that are not in the registry. Do not impose a fixed keyword count, maximum phrase length, keyword density or article word count. Never claim volume or competition without dated evidence.
 
-Every new article must declare `devimpact:keyword-group`: use `site` for general DevImpact topics or the exact app ID for an article about one app. Its `devimpact:focus-keyword` must exactly match one of the ten phrases registered for that group and locale. The locale follows the article path. Do not translate a keyword from another language or invent an unregistered focus phrase.
+## Rule 3 — Mandatory article SEO brief and publication gate
 
-When a new app is added to the central catalogue, add a keyword group containing ten phrases for every supported language before publishing any article about it. Keep exactly ten active phrases per group and locale; review and replace candidates deliberately rather than silently expanding the active set.
-
-**Research integrity:** these entries are strategic candidate phrases chosen for relevance to the actual app functionality and likely discovery intent. They are not verified search-volume or competition measurements. Before claiming high volume or ranking potential, validate each phrase with Google Ads Keyword Planner, Google Play search suggestions and Search Console for the target country. Never invent volumes, difficulty scores or rankings. Relevance and natural writing take priority over repetition or keyword stuffing.
+Follow SEO-STRATEGY.md for every article and language version. Required declarations: devimpact:seo-language, devimpact:seo-market, devimpact:search-intent, devimpact:content-type, devimpact:keyword-group and devimpact:focus-keyword. Secondary terms are optional and research-led. Each locale needs independent market research and original editorial adaptation. Automated checks do not guarantee rankings; human research and editorial review are mandatory.
