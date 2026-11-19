@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-19",
+  "language": "ar",
+  "market": "TN-ar",
+  "app": "zycrush",
+  "topic": "توقيت استخدام معززات ألعاب المطابقة الثلاثية وإدارة العملات والحركات المحدودة",
+  "primary_keyword": "استخدام معززات ألعاب المطابقة",
+  "search_intent": "informational",
+  "content_type": "guide",
+  "selection_rationale": "The existing English article match-3-booster-strategy has no Arabic counterpart in the published article files. The existing Arabic Palace Match article focuses on board planning and explicitly avoids undocumented boosters, while this guide focuses on resource timing, optional shop decisions and boosters for ZyCrush. This is a distinct subtopic and app-specific localization.",
+  "competitor_review": [
+    {
+      "url": "https://support.g5.com/hc/ar/articles/9191686759826",
+      "note": "Arabic official support guidance on general Match-3 level planning; not ZyCrush-specific."
+    },
+    {
+      "url": "https://playrix.helpshift.com/hc/ar/3-township/faq/16465-match-3/",
+      "note": "Arabic official support explanation of match-3 and varied booster categories; demonstrates that effects differ by title."
+    },
+    {
+      "url": "https://www.zgames.io/ar/c/match-3-games",
+      "note": "Arabic category competitor discusses general match-3 strategy; this article differentiates through detailed resource/booster timing and verified ZyCrush context."
+    }
+  ],
+  "official_app_source": "https://play.google.com/store/apps/details?id=com.game.zycrush.devimpact",
+  "official_app_facts": [
+    "Level objectives and limited moves",
+    "Candy swaps and combo chains",
+    "Optional shop with boosters",
+    "Coins economy linked to gameplay results",
+    "Optional rewarded-ad path for coins",
+    "Core play described as offline-friendly"
+  ],
+  "limitations": [
+    "Google Play does not enumerate booster names, exact effects or prices; article deliberately does not invent them."
+  ],
+  "internal_links": [
+    "https://shelternewlife.github.io/DevImpact/ar/apps/zycrush/",
+    "https://shelternewlife.github.io/DevImpact/ar/blog/استراتيجية-ألعاب-المطابقة-الثلاثية-palace-match/"
+  ],
+  "external_sources": [
+    "https://play.google.com/store/apps/details?id=com.game.zycrush.devimpact",
+    "https://support.g5.com/hc/ar/articles/9191686759826",
+    "https://playrix.helpshift.com/hc/ar/3-township/faq/16465-match-3/"
+  ],
+  "keyword_registry": "Not modified; current candidates are explicitly unverified and the article uses a researched natural Arabic phrase.",
+  "body_word_count_arabic_regex": 5180
+}
