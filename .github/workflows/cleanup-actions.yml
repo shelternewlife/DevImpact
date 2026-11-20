@@ -1,0 +1,38 @@
+name: Manual GitHub Actions cleanup
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_cleanup:
+        description: "Confirm deletion of completed workflow run history and all Actions caches"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  actions: write
+
+jobs:
+  cleanup:
+    name: Clean Actions history and caches
+    if: inputs.confirm_cleanup
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout cleanup script
+        uses: actions/checkout@v4
+
+      - name: Run cleanup
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: python scripts/cleanup_github_actions.py --execute
+
+  not-confirmed:
+    name: Cleanup not confirmed
+    if: ${{ !inputs.confirm_cleanup }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain safe cancellation
+        run: echo "Nothing was deleted. Run this workflow again and enable confirm_cleanup."
