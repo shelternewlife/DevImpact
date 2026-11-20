@@ -1,0 +1,31 @@
+# Brief SEO editorial — Competências transferíveis: como mostrar o seu valor ao mudar de carreira
+
+- Data da pesquisa: 20 de novembro de 2026
+- Língua/mercado: português europeu / Portugal (PT)
+- Intenção: informacional
+- Tipo: guia prático
+- Grupo de palavras-chave: `job-connect`
+- Palavra-chave principal: `competências transferíveis`
+- Termos secundários: `competências transferíveis no currículo`, `mudar de carreira`, `competências transversais`, `reconversão profissional`, `adaptar currículo`, `experiência profissional`
+- Slug: `/pt/blog/competencias-transferiveis-curriculo-mudar-carreira/`
+- Público: pessoas em Portugal que pretendem mudar de função ou setor e precisam de demonstrar como a experiência anterior se relaciona com novas oportunidades.
+- Problema resolvido: candidatos tendem a descrever competências de forma genérica ou a desvalorizar experiências de outros setores; o guia ensina a reunir evidências, relacioná-las com requisitos concretos e adaptar currículo e entrevista.
+- Diferenciação face ao conteúdo português existente: os artigos portugueses sobre alertas de emprego e ofertas falsas tratam descoberta de vagas e verificação de legitimidade; este guia trata a tradução de experiência anterior para funções diferentes. Não existe outro artigo português publicado sobre competências transferíveis no inventário auditado.
+- Inventário por tema: versões publicadas em francês, alemão, espanhol e italiano (4/7); sem versão portuguesa, inglesa ou árabe encontrada na árvore de artigos publicada.
+- Inventário total auditado: PT 5, EN 11, AR 11, FR 12, DE 11, ES 12, IT 12 (74 artigos antes desta publicação).
+- Registo de palavras-chave: grupo `job-connect` existe. As frases do registo são candidatas não verificadas e não foram tratadas como dados de volume. A expressão “competências transferíveis” é usada pelo IEFP e aparece em resultados portugueses atuais; foi escolhida por adequação lexical e intenção, não por volume presumido.
+- Pesquisa de resultados e concorrentes (20-11-2026): exploradas consultas em português europeu sobre competências transferíveis, mudança de carreira e currículo. Resultados relevantes incluem NCN, “Competências transferíveis: o que são, exemplos e como demonstrá-las” (conteúdo recente com exemplos de mudança de setor) e Ofertas de Emprego.pt, “O que são as competências transferíveis?” (guia de categorias e currículo). Diferenciação: método passo a passo ancorado em evidências, exemplos de transição entre setores, limites de qualificação e recursos oficiais portugueses. Sem volume, dificuldade ou ranking declarado por falta de medição fiável.
+- Fontes primárias e oficiais:
+  - IEFP, Perguntas Frequentes — Percurso Competências para o Trabalho: https://iefponline.iefp.pt/IEFP/faq2.jsp
+  - IEFP, Orientação Profissional: https://iefponline.iefp.pt/IEFP/web/guest/sobre-orientacao-profissional
+  - IEFP, RVCC profissional: https://www.iefp.pt/rvcc?tab=rvcc-profissional
+  - Europass, Perfil Europass: https://europass.europa.eu/pt/ferramentas-europass/o-perfil-europass
+  - Europass Portugal, Guia do Utilizador: https://www.europass.pt/guia-do-utilizador/
+  - Europass, Criar CV: https://europass.europa.eu/pt/create-europass-cv
+  - Google Play, Job Connect: https://play.google.com/store/apps/details?id=com.jobsearch.jobconnect.work.jobs.devimpact
+- Concorrentes analisados:
+  - NCN: https://newcareernetwork.pt/noticias/competencias-transferiveis/
+  - Ofertas de Emprego.pt: https://www.ofertasdeemprego.pt/recursos/o-que-sao-as-competencias-transferiveis/
+- Ligações internas verificadas na árvore atual: página portuguesa do Job Connect; guia português sobre alertas de emprego; guia português sobre ofertas falsas; índice do blog português.
+- Aplicação: Job Connect — pacote `com.jobsearch.jobconnect.work.jobs.devimpact`. A ficha do Google Play descreve pesquisa de oportunidades, guardar ofertas, configurar alertas e explorar funções e percursos profissionais. Não se atribuem à aplicação avaliação automática de competências, certificação, compatibilidade garantida ou contratação.
+- Contagem do corpo HTML: 4481 palavras (títulos e parágrafos do artigo; exclui metadados, navegação, JSON-LD e cartão promocional).
