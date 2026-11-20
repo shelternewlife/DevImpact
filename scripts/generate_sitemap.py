@@ -44,7 +44,7 @@ class HeadParser(HTMLParser):
 
 
 def path_from_rel(rel: str) -> str:
-    """Convert repo-relative HTML path to URL path (no leading slash, no trailing index.html)."""
+    """Convert an index file path to its canonical directory URL path."""
     if rel == "index.html":
         return ""
     if rel.endswith("/index.html"):
@@ -65,7 +65,8 @@ def lang_and_suffix(path: str) -> tuple[str, str]:
 
 
 def expected_url(path: str) -> str:
-    return f"{BASE}/{path}" if path else f"{BASE}/"
+    """GitHub Pages directory index pages use canonical URLs ending in a slash."""
+    return f"{BASE}/{path}/" if path else f"{BASE}/"
 
 
 def file_lastmod(file_path: Path) -> str:

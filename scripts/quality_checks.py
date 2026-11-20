@@ -59,6 +59,7 @@ class Page(HTMLParser):
 def fail(s): ERRORS.append(s)
 def get_pages(): return sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts)
 def url_for(p):
+    # GitHub Pages canonical URLs for directory index files always end in a slash.
     rel=p.relative_to(ROOT).as_posix()
     return BASE + ("/" if rel=="index.html" else "/" + rel.removesuffix("index.html"))
 
@@ -210,7 +211,7 @@ def check_sitemap(ps):
     urls=[n.text.strip() for n in root.findall("s:url/s:loc",ns) if n.text]
     if not urls: fail("Sitemap has no URLs")
     if len(urls)!=len(set(urls)): WARNINGS.append("Sitemap contains duplicate URLs; de-duplicate during sitemap rebuild")
-    known={url_for(p) for p in ps if p.relative_to(ROOT).as_posix() not in ("404.html","fr/404.html")}
+    known={url_for(p) for p in ps if p.name != "404.html"}
     for u in urls:
         if u not in known: fail("Sitemap URL has no HTML page: "+u)
     for node in root.findall("s:url",ns):

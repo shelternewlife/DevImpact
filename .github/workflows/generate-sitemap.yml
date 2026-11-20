@@ -2,6 +2,13 @@ name: Generate and verify sitemap
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/generate_sitemap.py
+      - scripts/quality_checks.py
+      - .github/workflows/generate-sitemap.yml
 
 permissions:
   contents: read
