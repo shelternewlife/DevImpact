@@ -1,0 +1,44 @@
+name: Generate and verify sitemap
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: generate-sitemap-main
+  cancel-in-progress: false
+
+jobs:
+  generate-verify:
+    name: Generate sitemap and run validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate sitemap
+        run: python scripts/generate_sitemap.py
+
+      - name: Verify sitemap locally
+        run: python scripts/verify_sitemap.py
+
+      - name: Run site quality checks
+        run: python scripts/quality_checks.py
+
+      - name: Upload verified sitemap
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-sitemap
+          path: sitemap.xml
+          if-no-files-found: error
+          retention-days: 7
